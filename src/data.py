@@ -156,3 +156,6 @@ def describe(y_train: np.ndarray, y_test: np.ndarray, train_idx: np.ndarray, dev
         "benign_dev": int((y_dev == BENIGN).sum()),
         "benign_test": int((y_test == BENIGN).sum()),
     }
+    
+if __name__ == "__main__":
+    print("Usage: import data.py and use any of its intern functions")

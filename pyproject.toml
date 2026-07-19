@@ -12,3 +12,12 @@ dependencies = [
 
 [tool.uv.sources]
 thrember = { git = "https://github.com/FutureComputing4AI/EMBER2024.git" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Expose the src/ directory as the importable package `src`, so notebooks can do
+# `from src import data` from any cwd once the project is installed editable.
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
