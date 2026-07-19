@@ -1,0 +1,14 @@
+[project]
+name = "adversarial-ember"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel>=7.3.0",
+    "numpy>=2.5.1",
+    "polars>=1.42.1",
+    "signify>=0.8.1,<0.9",
+    "thrember",
+]
+
+[tool.uv.sources]
+thrember = { git = "https://github.com/FutureComputing4AI/EMBER2024.git" }
