@@ -1,6 +1,9 @@
 # Dataset
 data/
 
+# Notebooks
+00_tests.ipynb
+
 # virtual environment
 .venv/
 
