@@ -48,6 +48,10 @@ EMBER2024_LGBM_PARAMS: dict[str, Any] = {
 
 DEFAULT_MAX_BIN: int = 255
 
+# Bit-reproducible training across thread counts. LightGBM ignores `deterministic` unless it
+# is paired with force_row_wise (or force_col_wise).
+DETERMINISM: dict[str, Any] = {"deterministic": True, "force_row_wise": True}
+
 
 def _sidecar_path(path: Path) -> Path:
     """Path of the JSON manifest stored next to a binary or model file."""
@@ -155,6 +159,7 @@ def train_baseline(
         copied. The test set is unreachable from this function by construction.
     """
     params = dict(EMBER2024_LGBM_PARAMS if config is None else config)
+    params.update(DETERMINISM)  # always deterministic, even under a custom config
     # num_iterations is an alias of num_boost_round; pass it explicitly so LightGBM cannot
     # end up with two disagreeing round counts.
     num_boost_round = int(params.pop("num_iterations", 500))
