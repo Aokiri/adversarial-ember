@@ -139,6 +139,7 @@ def train_baseline(
     config: dict[str, Any] | None = None,
     early_stopping_rounds: int = 50,
     log_period: int = 50,
+    evals_result: dict[str, Any] | None = None,
 ) -> lgb.Booster:
     """Train the baseline on the fit rows, early-stopping on dev.
 
@@ -149,6 +150,8 @@ def train_baseline(
         config: LightGBM parameters; defaults to the published EMBER2024 set. 
         early_stopping_rounds: Rounds without improvement before training stops.
         log_period: Iterations between evaluation logs; 0 silences them.
+        evals_result: If given, filled in place with the per-iteration dev metrics
+            (the validation curve vs number of trees).
 
     Returns:
         The trained Booster. best_iteration is set when early stopping fired, and is 0
@@ -173,6 +176,8 @@ def train_baseline(
             first_metric_only=bool(params.get("first_metric_only", False)),
         )
     ]
+    if evals_result is not None:
+        callbacks.append(lgb.record_evaluation(evals_result))
     if log_period:
         callbacks.append(lgb.log_evaluation(period=log_period))
 
