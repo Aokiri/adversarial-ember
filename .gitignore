@@ -12,3 +12,10 @@ data/
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+
+# Results
+results/models/
+*.npz
+
+# Scripts and logs
+*.log

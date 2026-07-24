@@ -1,0 +1,21 @@
+{
+  "seed": null,
+  "n_train": 4212000,
+  "n_dev": 468000,
+  "split_type": "chronological",
+  "dev_frac": 0.1,
+  "boundary_date": "2024-08-16",
+  "fit_range": [
+    "2023-09-24",
+    "2024-08-16"
+  ],
+  "dev_range": [
+    "2024-08-16",
+    "2024-09-21"
+  ],
+  "benign_fit": 2104278,
+  "benign_dev": 235722,
+  "benign_test": 540000,
+  "feature_version": "thrember_v3",
+  "dim": 2568
+}
