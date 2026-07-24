@@ -48,9 +48,9 @@ EMBER2024_LGBM_PARAMS: dict[str, Any] = {
 
 DEFAULT_MAX_BIN: int = 255
 
-# Bit-reproducible training across thread counts. LightGBM ignores `deterministic` unless it
-# is paired with force_row_wise (or force_col_wise).
-DETERMINISM: dict[str, Any] = {"deterministic": True, "force_row_wise": True}
+# Bit-reproducible training across thread counts. `deterministic` needs a forced histogram
+# method; force_col_wise is the fast one for wide feature sets like EMBER's 2568.
+DETERMINISM: dict[str, Any] = {"deterministic": True, "force_col_wise": True}
 
 
 def _sidecar_path(path: Path) -> Path:
